@@ -1,0 +1,45 @@
+version: '3.9'
+services:
+  kodidb: # Should be exact same name as "id" field in config.json
+    container_name: kodidb # Should be exact same name as "id" field in config.json
+    image: lscr.io/linuxserver/mariadb:latest # Try to avoid "latest" tag. As it may break configs in the future.
+    restart: unless-stopped # Do not change this
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ} # Can use any env variable. See "environment variables" section in the docs
+      - MYSQL_ROOT_PASSWORD=Toto2frigo!
+      # - MYSQL_DATABASE=USER_DB_NAME #optional
+      - MYSQL_USER=kodi #optional
+      - MYSQL_PASSWORD=kodi #optional
+    volumes:
+      - ${APP_DATA_DIR}/data/config:/config # Always start the path with ${APP_DATA_DIR}/data/. This will put all data inside app-data/my-app/data
+    ports:
+      - ${APP_PORT}:3306
+    networks:
+      - tipi_main_network # That should not be changed
+    labels: # Use your editors search and replace feature to replace all instances of "myapp" with your app name in the traefik labels
+      # Main
+      traefik.enable: true
+      traefik.http.middlewares.kodidb-web-redirect.redirectscheme.scheme: https
+      traefik.http.services.kodidb.loadbalancer.server.port: 8443 # Should be the same as the app internal port so for this example 9443
+      # Web
+      traefik.http.routers.kodidb-insecure.rule: Host(`${APP_DOMAIN}`)
+      traefik.http.routers.kodidb-insecure.entrypoints: web
+      traefik.http.routers.kodidb-insecure.service: kodidb
+      traefik.http.routers.kodidb-insecure.middlewares: kodidb-web-redirect
+      # Websecure
+      traefik.http.routers.kodidb.rule: Host(`${APP_DOMAIN}`)
+      traefik.http.routers.kodidb.entrypoints: websecure
+      traefik.http.routers.kodidb.service: kodidb
+      traefik.http.routers.kodidb.tls.certresolver: myresolver
+      # Local domain
+      traefik.http.routers.kodidb-local-insecure.rule: Host(`kodidb.${LOCAL_DOMAIN}`)
+      traefik.http.routers.kodidb-local-insecure.entrypoints: web
+      traefik.http.routers.kodidb-local-insecure.service: kodidb
+      traefik.http.routers.kodidb-local-insecure.middlewares: kodidb-web-redirect
+      # Local domain secure
+      traefik.http.routers.kodidb-local.rule: Host(`kodidb.${LOCAL_DOMAIN}`)
+      traefik.http.routers.kodidb-local.entrypoints: websecure
+      traefik.http.routers.kodidb-local.service: kodidb
+      traefik.http.routers.kodidb-local.tls: true
