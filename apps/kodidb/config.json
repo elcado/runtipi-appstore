@@ -8,7 +8,7 @@
   "categories": ["media", "utilities"],
   "description": "This app opens a MariaDB database and allows Kodi instances to synchronize their databases.",
   "tipi_version": 1,
-  "version": "v1.5.7",
+  "version": "v1.0.0",
   "source": "https://github.com/elcado/runtipi-appstore/tree/app/kodidb",
   "exposable": true,
   "supported_architectures": ["arm64", "amd64"],
