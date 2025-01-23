@@ -13,5 +13,31 @@
   "exposable": true,
   "supported_architectures": ["arm64", "amd64"],
   "created_at": 1724134338800,
-  "updated_at": 1724134338800
+  "updated_at": 1724134338800,
+  "form_fields": [
+    {
+      "type": "password",
+      "label": "MariaDB root password",
+      "max": 50,
+      "min": 4,
+      "required": true,
+      "env_variable": "MARIADB_ROOT_PASSWORD"
+    },
+    {
+      "type": "text",
+      "label": "Kodi DB username",
+      "max": 50,
+      "min": 3,
+      "required": true,
+      "env_variable": "KODI_DATABASE_USERNAME"
+    },
+    {
+      "type": "password",
+      "label": "Kodi DB password",
+      "max": 50,
+      "min": 4,
+      "required": true,
+      "env_variable": "KODI_DATABASE_PASSWORD"
+    }
+  ]
 }

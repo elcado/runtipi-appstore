@@ -10,8 +10,8 @@ services:
       - TZ=${TZ} # Can use any env variable. See "environment variables" section in the docs
       - MYSQL_ROOT_PASSWORD=Toto2frigo!
       # - MYSQL_DATABASE=USER_DB_NAME #optional
-      - MYSQL_USER=kodi #optional
-      - MYSQL_PASSWORD=kodi #optional
+      # - MYSQL_USER=kodi #optional
+      # - MYSQL_PASSWORD=kodi #optional
     volumes:
       - ${APP_DATA_DIR}/data/config:/config # Always start the path with ${APP_DATA_DIR}/data/. This will put all data inside app-data/my-app/data
     ports:
