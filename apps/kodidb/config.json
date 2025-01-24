@@ -20,7 +20,7 @@
       "label": "MariaDB root password",
       "max": 50,
       "min": 4,
-      "regex": ^[a-zA-Z0-9]+$,
+      "regex": "^[a-zA-Z0-9]+$",
       "required": true,
       "env_variable": "MARIADB_ROOT_PASSWORD"
     },
@@ -37,7 +37,7 @@
       "label": "Kodi DB password",
       "max": 50,
       "min": 4,
-      "regex": ^[a-zA-Z0-9]+$,
+      "regex": "^[a-zA-Z0-9]+$",
       "required": true,
       "env_variable": "KODI_DATABASE_PASSWORD"
     }
