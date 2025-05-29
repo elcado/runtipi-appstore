@@ -1,5 +1,5 @@
 {
-  "services": [  "services": [
+  "services": [
     {
       "name": "kodidb",
       "image": "lscr.io/linuxserver/mariadb:11.4.4-r1-ls171",
