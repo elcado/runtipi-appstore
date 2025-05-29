@@ -1,0 +1,46 @@
+{
+  "name": "Kodi Database",
+  "id": "kodidb",
+  "available": true,
+  "short_desc": "Remote database for Kodi",
+  "author": "Frederic Cadier",
+  "dynamic_config": true,
+  "port": 8606,
+  "categories": ["media", "utilities"],
+  "description": "This app opens a MariaDB database and allows Kodi instances to synchronize their databases.",
+  "tipi_version": 1,
+  "version": "v1.0.0",
+  "source": "https://github.com/elcado/runtipi-appstore/tree/app/kodidb",
+  "exposable": true,
+  "supported_architectures": ["arm64", "amd64"],
+  "created_at": 1724134338800,
+  "updated_at": 1724134338800,
+  "form_fields": [
+    {
+      "type": "password",
+      "label": "MariaDB root password",
+      "max": 50,
+      "min": 4,
+      "regex": "^[a-zA-Z0-9]+$",
+      "required": true,
+      "env_variable": "MARIADB_ROOT_PASSWORD"
+    },
+    {
+      "type": "text",
+      "label": "Kodi DB username",
+      "max": 50,
+      "min": 3,
+      "required": true,
+      "env_variable": "KODI_DATABASE_USERNAME"
+    },
+    {
+      "type": "password",
+      "label": "Kodi DB password",
+      "max": 50,
+      "min": 4,
+      "regex": "^[a-zA-Z0-9]+$",
+      "required": true,
+      "env_variable": "KODI_DATABASE_PASSWORD"
+    }
+  ]
+}

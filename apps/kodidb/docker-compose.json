@@ -1,0 +1,25 @@
+{
+  "services": [  "services": [
+    {
+      "name": "kodidb",
+      "image": "lscr.io/linuxserver/mariadb:11.4.4-r1-ls171",
+      "environment": {
+        "PUID": "1000",
+        "PGID": "1000",
+        "TZ": "${TZ}",
+        "MYSQL_ROOT_PASSWORD": "${MARIADB_ROOT_PASSWORD}"
+      },
+      "internalPort": 3306,
+      "volumes": [
+        {
+          "hostPath": "${APP_DATA_DIR}/data/config",
+          "containerPath": "/config",
+          "readOnly": false,
+          "shared": false,
+          "private": false
+        }
+      ],
+      "isMain": true
+    }
+  ]
+}
